@@ -1,0 +1,114 @@
+@mixin face-foundation-icon-font-importer( $font-settings ) {
+  @font-face { 
+    font-family: nth($font-settings, 2 );
+    src: url('#{ nth( $font-settings, 1 ) }.eot');
+    src: url('#{ nth( $font-settings, 1 ) }.eot?#iefix') format('embedded-opentype'),
+         url('#{ nth( $font-settings, 1 ) }.woff') format('woff'),
+         url('#{ nth( $font-settings, 1 ) }.ttf') format('truetype'),
+         url('#{ nth( $font-settings, 1 ) }.svg##{ nth( $font-settings, 2 ) }') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+
+@mixin global-foundicon-styles-foundation-icon-font-importer( $classPrefix ) {
+  [class*="#{$classPrefix}"] {
+    display: inline;
+    width: auto;
+    height: auto;
+    line-height: inherit;
+    vertical-align: baseline;
+    background-image: none;
+    background-position: 0 0;
+    background-repeat: repeat;
+  }
+}
+
+@mixin font-specific-foundicon-styles-foundation-icon-font-importer( $font-settings ) {
+  [class*="#{ nth( $font-settings,  4) } #{ nth( $font-settings,  3) }"]:before {
+    font-family: nth( $font-settings,  2);
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: inherit;
+  }
+}
+
+@mixin font-specific-foundicon-ie-styles-foundation-icon-font-importer( $font-settings ) {
+  [class*="#{ nth( $font-settings,  4) } #{ nth( $font-settings,  3) }"]:before {
+    font-family: nth( $font-settings,  2);
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+
+@mixin i-class-foundation-icon-font-importer( $iconsetPrefix, $classPrefix, $name, $pua ) {
+  .#{$iconsetPrefix}.#{$classPrefix}#{$name}:before { 
+    content: "\f#{$pua}";
+  }
+}
+
+@mixin ie-class-foundation-icon-font-importer( $iconsetPrefix, $classPrefix, $name, $pua ) {
+  .#{$iconsetPrefix}.#{$classPrefix}#{$name} { 
+    *zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "&#xf#{$pua};"); 
+  }
+}
+
+@mixin i-classes-foundation-icon-font-importer ( $font-settings, $font-configuration ){
+  $index: 1;
+  $length: length( $font-configuration );
+
+  @while $index <= $length {
+    @include i-class-foundation-icon-font-importer( nth( $font-settings,  4), nth( $font-settings,  3), nth( $font-configuration, $index ), nth( $font-configuration, $index+1 ) );
+    $index: $index + 2
+  }
+}
+
+@mixin ie-classes-foundation-icon-font-importer ( $font-settings, $font-configuration ){
+  @for $i from 1 through length( $font-configuration )/2 {
+    @include i-class-foundation-icon-font-importer( nth( $font-settings,  4), nth( $font-settings,  3), nth( $font-configuration, $i ), nth( $font-configuration, $i+1 ));
+  }
+}
+
+
+@mixin foundation-icon-font-importer( $font-key-collection: ( "general", "general-enclosed", "accessability", "social" ), $ie7: "false" ) {
+  @include global-foundicon-styles-foundation-icon-font-importer( $foundation-icon-font-class-Prefix );
+
+  @each $fontKey in $font-key-collection {
+    @if $fontKey == "general" {
+      @include face-foundation-icon-font-importer( $general-foundation-icon-font-settings );
+      @include font-specific-foundicon-styles-foundation-icon-font-importer( $general-foundation-icon-font-settings );
+      @include i-classes-foundation-icon-font-importer( $general-foundation-icon-font-settings, $general-foundation-icon-font-importer-configuration );
+      @if $ie7 == "true" {
+        @include font-specific-foundicon-ie-styles-foundation-icon-font-importer( $general-foundation-icon-font-settings );
+        @include ie-classes-foundation-icon-font-importer( $general-foundation-icon-font-settings, $general-foundation-icon-font-importer-configuration );
+      }
+    } 
+    @else if $fontKey == "general-enclosed" {
+      @include face-foundation-icon-font-importer( $general-enclosed-foundation-icon-font-settings );
+      @include font-specific-foundicon-styles-foundation-icon-font-importer( $general-enclosed-foundation-icon-font-settings );
+      @include i-classes-foundation-icon-font-importer( $general-enclosed-foundation-icon-font-settings, $general-enclosed-foundation-icon-font-importer-configuration );
+      @if $ie7 == "true" {
+        @include font-specific-foundicon-ie-styles-foundation-icon-font-importer( $general-foundation-icon-font-settings );
+        @include ie-classes-foundation-icon-font-importer( $general-enclosed-foundation-icon-font-settings, $general-enclosed-foundation-icon-font-importer-configuration );
+      }
+    } 
+    @else if $fontKey == "accessability" {
+      @include face-foundation-icon-font-importer( $accessibility-foundation-icon-font-settings );
+      @include font-specific-foundicon-styles-foundation-icon-font-importer( $accessibility-foundation-icon-font-settings );
+      @include i-classes-foundation-icon-font-importer( $accessibility-foundation-icon-font-settings, $accessibility-foundation-icon-font-importer-configuration );
+      @if $ie7 == "true" {
+        @include font-specific-foundicon-ie-styles-foundation-icon-font-importer( $general-foundation-icon-font-settings );
+        @include ie-classes-foundation-icon-font-importer( $accessibility-foundation-icon-font-settings, $accessibility-foundation-icon-font-importer-configuration );
+      }
+    } 
+    @else if $fontKey == "social" {
+      @include face-foundation-icon-font-importer( $social-foundation-icon-font-settings );
+      @include font-specific-foundicon-styles-foundation-icon-font-importer( $social-foundation-icon-font-settings );
+      @include i-classes-foundation-icon-font-importer( $social-foundation-icon-font-settings, $social-foundation-icon-font-importer-configuration );
+      @if $ie7 == "true" {
+        @include font-specific-foundicon-ie-styles-foundation-icon-font-importer( $general-foundation-icon-font-settings );
+        @include ie-classes-foundation-icon-font-importer( $social-foundation-icon-font-settings, $social-foundation-icon-font-importer-configuration );
+      }
+    }
+  }
+}

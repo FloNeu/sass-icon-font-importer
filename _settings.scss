@@ -1,0 +1,30 @@
+
+$foundation-icon-font-class-Prefix: "foundicon-";
+
+$general-foundation-icon-font-settings: (
+    "../fonts/general_foundicons"
+    , "GeneralFoundicons"
+    , $foundation-icon-font-class-Prefix
+    , "general"
+);
+
+$general-enclosed-foundation-icon-font-settings: (
+    "../fonts/general_enclosed_foundicons"
+    , "GeneralEnclosedFoundicons"
+    , $foundation-icon-font-class-Prefix
+    , "enclosed"
+);
+
+$accessibility-foundation-icon-font-settings: (
+    "../fonts/accessibility_foundicons"
+    , "AccessibilityFoundicons"
+    , $foundation-icon-font-class-Prefix
+    , "access"
+);
+
+$social-foundation-icon-font-settings: (
+    "../fonts/social_foundicons"
+    , "SocialFoundicons"
+    , $foundation-icon-font-class-Prefix
+    , "social"
+);
