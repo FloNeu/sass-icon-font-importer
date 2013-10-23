@@ -70,7 +70,7 @@
 }
 
 
-@mixin foundation-icon-font-importer( $font-key-collection: ( "general", "general-enclosed", "accessability", "social" ), $ie7: "false" ) {
+@mixin foundation-icon-font-importer( $font-key-collection: (), $ie7: "false" ) {
   @include global-foundicon-styles-foundation-icon-font-importer( $foundation-icon-font-class-Prefix );
 
   @each $fontKey in $font-key-collection {

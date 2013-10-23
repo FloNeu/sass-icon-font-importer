@@ -36,22 +36,24 @@
   * Open the sass-file you want the mixings imported to and include
   the icon-font importers main-file.
 
-    `@import "./path/to/mixingd/foundationIconFontImport/foundationIconFontImport";`
+    `@import "./path/to/mixingd/sass-icon-font-importer/iconFontImport";`
 
   * Then use this scss-snippet to call the mixing to create the the css needed for using
     the icon-fonts, according to your configuration.
 
-    `// Imports only foundation social icon-font
-    $foundation-icon-fonts-to-import: (
+    ```
+    // Imports only foundation social icon-font
+    $icon-fonts-to-import: (
         "social"
         //, "general"
         //, "general-enclosed"
         //, "accessability"
     );
     @include foundation-icon-font-importer( 
-      $foundation-icon-fonts-to-import // Collection of font-keys to import
+      $icon-fonts-to-import // Collection of font-keys to import
       , "true" // Enables IE7 support, "false" is default and disables IE7 support
-    );`
+    );
+    ```
 
 ## Further usage
 * Place "sass-icon-font-importer" mixing-folder in your sass-directory.
