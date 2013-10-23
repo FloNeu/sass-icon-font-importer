@@ -45,29 +45,24 @@
     // Imports only foundation social icon-font
     $icon-fonts-to-import: (
         "social"
-        //, "general"
-        //, "general-enclosed"
-        //, "accessability"
+        , "general"
+        , "general-enclosed"
+        , "accessability"
     );
     @include foundation-icon-font-importer( 
       $icon-fonts-to-import // Collection of font-keys to import
       , "true" // Enables IE7 support, "false" is default and disables IE7 support
     );
-    ```
+  ```
+  remove unused font-identifiers from $icon-fonts-to-import collection and the according
+  css will not be generated at compile time.
+
+  * This will create all css needed to use the configured icon-font in a similar manner as seen
+    on [Zurb Foundation Playground](http://zurb.com/playground/foundation-icon-fonts-3).
 
 ## Further usage
-* Place "sass-icon-font-importer" mixing-folder in your sass-directory.
-* Import it to your projects sass-file using : 
-    @import "./components/foundationIconFontImport/foundationIconFontImport";
-* Edit the mixings settings-file to make it fit your needs, and link to the 
-  font-files located in the original repository-folder.
-* Call the mixing from your sass-file
-  * without parameters all icon-fonts without IE7 support are imported. 
-    Like: `@include foundation-icon-font-importer();`
-  * The mixing takes to optional parameters, first a sass-collection defining
-    the icon-fonts to import and second string "true" or "false" to include/exclude
-    IE7 support.
-    Like:
+  * Edit the mixings configuration-file to make it fit your needs, and link to the 
+    font-files located in the original repository-folder.
 
 ## License
 [MIT License (MIT)](http://opensource.org/licenses/MIT)
