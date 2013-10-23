@@ -1,6 +1,7 @@
 $foundation-icon-font-class-Prefix: "foundicon-";
 
-$general-enclosed-foundation-icon-font-importer-configuration: ( 
+
+$general-foundation-icon-font-importer-configuration: (
   "settings", "000"
   , "heart", "001"
   , "star", "002"
@@ -49,7 +50,7 @@ $general-enclosed-foundation-icon-font-importer-configuration: (
   , "smiley", "02d"
   , "search", "02e"
 );
-$general-foundation-icon-font-settings: (
+$general-foundation-icon-font-configuration: (
     "../fonts/general_foundicons"
     , "GeneralFoundicons"
     , $foundation-icon-font-class-Prefix
