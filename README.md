@@ -1,30 +1,54 @@
 ## Sass-Icon-Font-Importer
   Mixing used to import multiple icon-fonts in comfortable, 
   configurable way. In example for use-cases like on
-  the foundation font-icons playground-page 
+  the foundation font-icons playground-page. 
   ( http://zurb.com/playground/foundation-icons )
 
-  Produces 
-
 ## Notes
-  * Tries to solve some of the problems people are having
+  * Was created for importing multiple [Foundation Icon-Fonts](https://github.com/zurb/foundation-icons) and tries to solve some of the problems people are having
   ( https://groups.google.com/forum/#!topic/foundation-framework-/Jj9zfn-IQbs )
-  when using the sass import files delivered by the bower-package
-  from https://github.com/zurb/foundation-icons.
+  when using the sass import files delivered by the bower-package.
   * Can be used to import other icon-fonts in a similar manner
 
 ## TODOs:
   * Testing of icon classes in ie7
-  * Further Documentation
   * Demo-Page
 
-
 ## Prerequisites
-  * Node.js - Download and Install [Node.js](http://www.nodejs.org/).
-
+  * Foundation Icons - Download and Install from [Github](https://github.com/zurb/foundation-icons)
+    or [Foundation Playground](http://zurb.com/playground/foundation-icon-fonts-3). You can also require the Package via [Bower](http://bower.io/) if you have it installed in your project.
+  * (Recommended for Linux/Mac) 
+    * Git - Download and Install [Git](http://git-scm.com/)
+  * (Recommended for Windows)
+    * Msysgit - Download and Install [Msysgit](http://msysgit.github.io/) providing Git and Unix-Shell for Windows
 
 ## Configuration
-  See the [config](./config/) folder and especially the [project.js](./config/project.js) file.
+  See the [config](./config/) folder and the [Settings File](./_settings.scss).
+
+## How to use it
+* Place "sass-icon-font-importer" mixing-folder in your sass-directory.
+* Import it to your projects sass-file using : 
+    @import "./components/foundationIconFontImport/foundationIconFontImport";
+* Edit the mixings settings-file to make it fit your needs, and link to the 
+  font-files located in the original repository-folder.
+* Call the mixing from your sass-file
+  * without parameters all icon-fonts without IE7 support are imported. 
+    Like: @include foundation-icon-font-importer();
+  * The mixing takes to optional parameters, first a sass-collection defining
+    the icon-fonts to import and second string "true" or "false" to include/exclude
+    IE7 support.
+    Like:
+    // Imports only foundation social icon-font
+    $foundation-icon-fonts-to-import: (
+        "social"
+        //, "general"
+        //, "general-enclosed"
+        //, "accessability"
+    );
+    @include foundation-icon-font-importer( 
+      $foundation-icon-fonts-to-import // Collection of font-keys to import
+      , "true" // Enables IE7 support, "false" is default and disables IE7 support
+    );
 
 ## Quick Install
   Open your Unix-Shell and change into the directory you want the project
@@ -43,67 +67,6 @@
   Start grunt development-workflow:
 
     $ grunt server
-
-  This will compile all of the applications source-files, runs application in development-mode
-  and opens it in a browser. In this mode auto-recompilation of project-sources,
-
-  * [Coffee-Script as Javascript-Sources](http://coffeescript.org/) ( Currently not used! )
-  * [Scss as Css-Sources](http://sass-lang.com/)
-  * [Jade as HTML-Sources](http://sass-lang.com/)
-
-  , are enabled. Also the server-application is automatically restarted if files in 
-  [Server-Application Folder](./server) are changed.
-    
-## Root - Folder Structure
-  * [Scss-Cache Folder](./.sass-cache/) - Temporary cached scss-files used for faster scss-recompilation during
-    development-mode.
-  * [Temporary Folder](./.tmp/) - All temporary files compiled from project-sources during 
-    development-mode.
-  * [Frontend-Application Folder](./app/) - All files which are needed for the frontend-application.
-  * [Bower-Modules Folder](./bower_modules/) - All client-side javascript-dependencies installed via bower.
-  * [Configuration Folder](./config/) - Configuration files shared between frontend- and server-application.
-  * [Data Folder](./data/) - Contains files for initial application-data used in development-, testing- or live
-    -enviroments.
-  * [Node-Modules Folder](./node_modules/) - All server-side javascript-dependencies installed via npm.
-  * [Server-Application Folder](./server/) - All files which are needed for the server-application.
-  * [Testing Folder](./test/) - All files needed for testing the frontend-/server-application.
-
-## Frontend-Application - Folder Structue.
-  * [Assets Folder](./app/assets/) - Folder to contain frontend-application assets like images, audio and video.
-  * [Fonts](./fonts/) - Folder to contain custom web-font files used in the frontend-application.
-  * [Scripts Folder](./app/scripts/) - Containing all javascript-files of the frontend-application.
-    * [AngularJS-Controllers Folder](./app/scripts/controllers/) - AngularJS controllers used to provide functionallity for
-      AngularJS views.
-    * [AngularJS-Directives Folder](./app/scripts/directives/) - AngularJS custom frontend-application directives used in
-      frontend-application.
-    * [AngularJS-Filters Folder](./app/scripts/filters) - AngularJS custom frontend-application filters used in frontend-
-      application.
-    * [Frontend-Services Folder](./app/scripts/services/) - AngularJS services connecting the frontend-application with
-      server-application CRUD-Api.
-    * [Frontend-Application File](./app/scripts/app.js) - File for initialization of the frontend-application.
-    * [Frontend-Routes File](./app/scripts/routes.js) - Defines the routes of the angular frontend-application.
-  * [Styles Folder](./app/styles/) - Containing all frontend-application css source-files.
-    * [Components Folder](./app/styles/components/) - Folder to contain scss-components used by the frontend-application
-      styles.
-    * [Mixing Folder](./app/styles/mixings/) - Folder to contain custom scss-mixings to be used in frontend-application
-      styles.
-    * [Views Folder](./app/styles/views/) - Folder to contain scss style-files directly related to frontend-application
-      views
-    * [Angular-Styles File](./app/styles/_angular.scss) - Contains definitions for the styles automatically applied to
-      forms controlled by AngularJs.
-    * [Foundation-Settings File](./app/styles/_settings.scss) - File to override the standard settings of the foundation
-      -framework styles.
-    * [App-Styles File](./app/styles/app.scss) - Main Style-File including/importing and configuring all of 
-      frontend-applications styles
-  * [Views Folder](./app/views/) - Folder to contain all views precompiled for the use in the AngularJS frontend-application 
-
-## Server-Application - Folder Structure
-  * [Configuration Folder](./server/config/) - Containing configuration files used by the server-application
-  * [Controllers Folder](./server/controllers/) - Containing controllers providing functionallity for the server-application.
-  * [Models Folder](./server/models/) - Defining the data-models used for setting up the server-application database.
-  * [Views Folder](./server/routes.js) - Contains the jade views, layouts and partials served directly from the server in live-
-  enviroment ( Are also precompiled in development-enviroment ).
-  * [Server File](./server/server.js) - The main-file of the server-application importing and including all modules related to the server-application.
 
 ## License
 [Creative Commons Attribution-NonCommercial-NoDerivs 2.0](http://creativecommons.org/licenses/by-sa/3.0/)
