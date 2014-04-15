@@ -33,10 +33,10 @@
 
     $ git clone https://github.com/FloNeu/sass-icon-font-importer.git
 
-  * Open the sass-file you want the mixings imported to and include
+  * Open the sass-file( like app.scss or styles.scss ) you want the mixings imported to and include
   the icon-font importers main-file.
 
-    `@import "./path/to/mixingd/sass-icon-font-importer/iconFontImport";`
+    `@import "./path/to/mixing/sass-icon-font-importer/iconFontImporter";`
 
   * Then use this scss-snippet to call the mixing to create the the css needed for using
     the icon-fonts, according to your configuration.
@@ -49,7 +49,7 @@
         , "general-enclosed"
         , "accessability"
     );
-    @include foundation-icon-font-importer( 
+    @include icon-font-importer( 
       $icon-fonts-to-import // Collection of font-keys to import
       , "true" // Enables IE7 support, "false" is default and disables IE7 support
     );
