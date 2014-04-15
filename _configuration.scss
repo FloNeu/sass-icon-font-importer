@@ -106,7 +106,7 @@ $general-enclosed-foundation-icon-font-importer-configuration: (
   , "smiley", "02d"
   , "search", "02e"
   );
-$general-enclosed-foundation-icon-font-settings: (
+$general-enclosed-foundation-icon-font-configuration: (
     "../fonts/general_enclosed_foundicons"
     , "GeneralEnclosedFoundicons"
     , $foundation-icon-font-class-Prefix
@@ -141,7 +141,7 @@ $accessibility-foundation-icon-font-importer-configuration: (
   , "universal-access", "018"
   , "elevator", "019"
 );
-$accessibility-foundation-icon-font-settings: (
+$accessibility-foundation-icon-font-configuration: (
     "../fonts/accessibility_foundicons"
     , "AccessibilityFoundicons"
     , $foundation-icon-font-class-Prefix
