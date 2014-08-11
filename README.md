@@ -1,3 +1,9 @@
+# USE NEW FOUNDICON-PACKAGE from
+##  https://github.com/zurb/foundation-icons
+  The package now got some great sass-configuration-files/mixings
+  available which basically allows the similar functionality as these
+  mixings, and i recommand to use them instead!!!
+
 ## Sass-Icon-Font-Importer
   Mixing used to import multiple icon-fonts in comfortable, 
   configurable way. In example for use-cases like on
