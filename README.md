@@ -1,4 +1,4 @@
-# USE NEW FOUNDICON-PACKAGE from
+# CAUTION: USE NEW FOUNDICON-PACKAGE from
 ##  https://github.com/zurb/foundation-icons
   The package now got some great sass-configuration-files/mixings
   available which basically allows the similar functionality as these
